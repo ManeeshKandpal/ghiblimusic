@@ -1,0 +1,339 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* src/styles/GlobalStyles.css */
+
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Caveat:wght@400;700&display=swap");
+
+/* Base font */
+body {
+  font-family: "Inter", sans-serif;
+  margin: 0; /* Remove default body margin */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Whimsical font for titles/specific elements */
+.font-ghibli-title {
+  font-family: "Caveat", cursive;
+}
+
+/* --- Theme Variables --- */
+:root {
+  /* Default: Totoro Forest Theme */
+  --bg-primary: #e6f0e6;
+  --bg-secondary: #f5f5dc;
+  --bg-accent: #d8e8d8;
+  --text-primary: #3a5f0b;
+  --text-secondary: #708090;
+  --accent-gold: #daa520;
+  --accent-purple: #b2a4d4;
+  --border-color: #a9a9a9;
+  --shadow-color: rgba(58, 95, 11, 0.2);
+  --icon-color: var(--text-primary);
+  --icon-hover-color: var(--accent-gold);
+  --progress-bg: #c1d8c1;
+  --progress-fill: var(--accent-gold);
+  --scrollbar-thumb: #a9c4a9;
+  --scrollbar-track: var(--bg-accent);
+  --active-nav-bg: color-mix(in srgb, var(--accent-gold) 20%, var(--bg-accent));
+}
+
+.theme-spirited {
+  --bg-primary: #f0e6e6;
+  --bg-secondary: #add8e6;
+  --bg-accent: #e0b0b0;
+  --text-primary: #8b0000;
+  --text-secondary: #4682b4;
+  --accent-gold: #ffd700;
+  --accent-teal: #008080;
+  --border-color: #778899;
+  --shadow-color: rgba(139, 0, 0, 0.2);
+  --icon-color: var(--text-primary);
+  --icon-hover-color: var(--accent-teal);
+  --progress-bg: #d8bfd8;
+  --progress-fill: var(--accent-teal);
+  --scrollbar-thumb: #b0c4de;
+  --scrollbar-track: var(--bg-accent);
+  --active-nav-bg: color-mix(in srgb, var(--accent-teal) 20%, var(--bg-accent));
+}
+
+.theme-howl {
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #d2b48c;
+  --bg-accent: #b0c4de;
+  --text-primary: #663300;
+  --text-secondary: #708090;
+  --accent-gold: #b8860b;
+  --accent-blue: #4682b4;
+  --border-color: #a0522d;
+  --shadow-color: rgba(102, 51, 0, 0.2);
+  --icon-color: var(--text-primary);
+  --icon-hover-color: var(--accent-blue);
+  --progress-bg: #c0c0c0;
+  --progress-fill: var(--accent-blue);
+  --scrollbar-thumb: #a9a9a9;
+  --scrollbar-track: var(--bg-accent);
+  --active-nav-bg: color-mix(in srgb, var(--accent-blue) 20%, var(--bg-accent));
+}
+
+/* --- Apply Theme Variables --- */
+/* Apply base theme colors to the container div inside App.js */
+.themed {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+.bg-secondary {
+  background-color: var(--bg-secondary);
+}
+.bg-accent {
+  background-color: var(--bg-accent);
+}
+.text-secondary {
+  color: var(--text-secondary);
+}
+.text-accent-gold {
+  color: var(--accent-gold);
+}
+.border-themed {
+  border-color: var(--border-color);
+}
+.shadow-themed {
+  box-shadow: 0 4px 10px 0 var(--shadow-color);
+}
+.shadow-themed-lg {
+  box-shadow: 0 10px 25px 0 var(--shadow-color);
+}
+.progress-bar-bg {
+  background-color: var(--progress-bg);
+}
+
+/* --- Base Styles & Overrides --- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--scrollbar-thumb) 80%, black);
+}
+
+/* --- Icon Styling --- */
+.btn-icon {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+  color: var(--icon-color);
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+.btn-icon:hover {
+  transform: scale(1.1);
+  color: var(--icon-hover-color);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.btn-icon:active {
+  transform: scale(1.05);
+}
+.btn-icon.active-shuffle-repeat {
+  color: var(--icon-hover-color);
+} /* Style for active shuffle/repeat */
+
+.btn-play-pause {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--icon-color);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease;
+}
+.btn-play-pause svg {
+  width: 28px;
+  height: 28px;
+}
+.btn-play-pause:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  background-color: color-mix(in srgb, var(--bg-secondary) 95%, black);
+  color: var(--icon-hover-color);
+}
+.btn-play-pause:active {
+  transform: scale(1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Layout Specific Styles --- */
+.album-art-frame {
+  border: 10px solid;
+  border-image: linear-gradient(45deg, #8b4513, #a0522d) 1;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+  padding: 5px;
+  background-color: var(--bg-secondary);
+  flex-shrink: 0;
+}
+.playlist-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.playlist-card:hover {
+  transform: translateY(-5px) rotate(1deg);
+  box-shadow: 0 8px 20px 0 var(--shadow-color);
+}
+
+.sidebar-bamboo {
+  background: linear-gradient(to bottom, #c1d8c1, #a9c4a9);
+  border-right: 3px solid #8fbc8f;
+}
+.sidebar-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+}
+.sidebar-icon.active {
+  background-color: var(--active-nav-bg);
+  color: var(--icon-hover-color);
+}
+.sidebar-icon:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+.sidebar-icon.active:hover {
+  background-color: color-mix(in srgb, var(--active-nav-bg) 90%, black);
+}
+
+/* Tooltip - Basic implementation */
+[data-tooltip] {
+  position: relative;
+}
+[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  background-color: var(--accent-gold);
+  color: var(--text-primary);
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: fadeInTooltip 0.3s 0.2s forwards;
+  z-index: 50; /* Ensure tooltip is on top */
+}
+@keyframes fadeInTooltip {
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+  }
+}
+
+/* Hide views/panels by default */
+.view,
+.content-panel {
+  display: none;
+}
+.view.active,
+.content-panel.active {
+  display: block;
+}
+
+/* Placeholder Panel Style */
+.placeholder-panel {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-style: italic;
+  min-height: 100px;
+  margin-top: 1rem;
+}
+
+/* Progress Bar Styles */
+input[type="range"].progress-bar {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 100%; /* Full width */
+  height: 8px; /* Specified height */
+  /* background: var(--progress-bg); Track color is handled by linear-gradient inline style */
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+}
+/* Thumb for Webkit browsers */
+input[type="range"].progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px; /* Thumb width */
+  height: 16px; /* Thumb height */
+  background: var(--progress-fill); /* Thumb color */
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+/* Thumb for Firefox */
+input[type="range"].progress-bar::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--progress-fill);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none; /* Remove default border */
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+/* Volume Slider Styles */
+input[type="range"].volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px; /* Slimmer */
+  /* background: var(--progress-bg); Track color handled by inline style */
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+  transition: width 0.3s ease-in-out; /* Animate width */
+}
+input[type="range"].volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: var(--progress-fill);
+  border-radius: 50%;
+  cursor: pointer;
+}
+input[type="range"].volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: var(--progress-fill);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+/* Add Tailwind base, components, utilities */
+/* In a real project, you'd typically import Tailwind here or configure it via PostCSS */
+/* For this example, we assume Tailwind is loaded globally (e.g., via CDN in index.html) */
